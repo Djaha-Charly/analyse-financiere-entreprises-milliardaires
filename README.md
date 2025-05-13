@@ -45,6 +45,8 @@ Ce jeu de données contient les ratios financiers d’entreprises françaises ex
   - Résultat net
 
 ⚠️ Le taux de variation de la première année (2012) est laissé vide ou à zéro selon la configuration.
+📄 Documentation SQL : Notebook explicatif détaillé ici: notebook_sql_documentation.pdf
+
 
 ---
 
