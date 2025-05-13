@@ -1,84 +1,108 @@
-# 📊 Analyse Financière des Entreprises Milliardaires en France
+# 📊 Analyse Financière des Entreprises Françaises Milliardaires (2012-2023)
 
-> **Note :** Ce projet s’appuie sur une base de données initiale publique comprenant toutes les entreprises françaises, mais l’analyse a volontairement été restreinte aux entreprises dont le chiffre d’affaires dépasse **1 milliard d’euros**. Cette approche permet de concentrer les analyses sur les grandes entreprises structurantes de l’économie.
+## 📌 Contexte et Objectif
 
----
+Ce projet a pour objectif d’étudier la santé financière des entreprises françaises réalisant plus de **1 milliard d’euros de chiffre d’affaires** entre **2012 et 2023**.  
+L’analyse repose sur plusieurs indicateurs financiers clés :  
+- Chiffre d’affaires  
+- Résultat net  
+- Marge nette  
+- Classement en quartiles (clusters) selon le chiffre d’affaires  
 
-## 📌 Contexte et Objectifs
-
-Ce projet a pour objectif de **réaliser une analyse financière des entreprises milliardaires en France** en exploitant des indicateurs clés tels que le chiffre d’affaires, le résultat net et la rentabilité.
-
-L’étude permet notamment de :
-- Suivre l’évolution du chiffre d’affaires et du résultat net moyens sur plusieurs années.
-- Calculer les taux de variation annuelle.
-- Segmenter les entreprises selon leurs performances financières.
-- Visualiser les indicateurs à travers des dashboards Power BI.
+L’ensemble du projet est réalisé à partir de données publiques issues de l’**INPI** et des bases BCE disponibles via le portail officiel [data.economie.gouv.fr](https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce).
 
 ---
 
-## 📂 Source de Données
+## 📌 Source de données
 
-- 📑 **Fichier :** `ratios_inpi_bce.csv`
-- 🔗 **Lien officiel :** [https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce](https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce)
-
-Ce jeu de données contient les ratios financiers d’entreprises françaises extraits de leurs bilans et comptes de résultat.
-
----
-
-## 🛠️ Traitements et Choix Méthodologiques
-
-### 📌 Filtrage et Périmètre
-- **Critère retenu :** entreprises dont le chiffre d’affaires annuel dépasse **1 milliard d’euros**.
-- Création d’une vue matérialisée `entreprises_milliardaires` dans la base SQL.
-
-### 📌 Nettoyage et Correction des Données
-- **Détection et correction manuelle de valeurs aberrantes** sur certaines valeurs de chiffre d’affaires et résultat net via le site officiel [infogreffe.fr](https://www.infogreffe.fr/entreprise/).
-- Conversion de certaines valeurs manquantes en `NULL`.
-- Suppression des lignes dont les variables clés (chiffre d’affaires ou résultat net) étaient manquantes.
-
-### 📌 Calculs et Variables Créées
-- **Ajout de la marge nette** calculée comme :  
-  `Marge nette = (Résultat net / Chiffre d’affaires) × 100`
-- Segmentation des entreprises par quartiles de chiffre d’affaires.
-- Calcul des taux de variation annuelle de :
-  - Chiffre d’affaires
-  - Résultat net
-
-⚠️ Le taux de variation de la première année (2012) est laissé vide ou à zéro selon la configuration.
-📄 Documentation SQL : Notebook explicatif détaillé ici: notebook_sql_documentation.pdf
-
+- **Nom du fichier** : `ratios_inpi_bce.csv`
+- **Provenance** : [https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce](https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce)
+- **Période couverte** : 2012-2023
 
 ---
 
-## 📊 Indicateurs et Visualisations
+## 📌 Méthodologie
 
-Les visualisations ont été réalisées sur Power BI en exploitant exclusivement les entreprises milliardaires.
+### 📊 Nettoyage et Préparation des Données  
 
-- **Évolution du chiffre d’affaires moyen et du résultat net moyen**
-- **Taux de variation annuel (%)** des indicateurs financiers.
-- **Distribution des entreprises par quartiles de chiffre d’affaires**
-- **Analyse de la marge nette moyenne par type de bilan et année**
+**1️⃣ Détection des valeurs aberrantes**  
+- Analyse des distributions du **chiffre d’affaires** et du **résultat net**  
+- Identification et traitement :
+  - Chiffres d’affaires négatifs
+  - Résultats nets supérieurs à +3000% ou inférieurs à –100% du chiffre d’affaires  
 
----
+**2️⃣ Règles métiers appliquées**  
+- Conservation uniquement des entreprises dont le **chiffre d’affaires ≥ 1 milliard d’euros**  
+- Résultat net borné entre **–100% et +200% du chiffre d’affaires**  
+- Calcul d’un indicateur financier complémentaire : **Marge nette (%)** = (Résultat Net / Chiffre d’affaires) × 100  
+- Substitution manuelle de certaines valeurs aberrantes détectées via le site officiel [infogreffe.fr](https://www.infogreffe.fr/entreprise/) pour garantir la fiabilité des indicateurs
 
-## 📦 Outils Utilisés
-
-- **SQL (PostgreSQL)** pour le traitement des données et la création de vues matérialisées.
-- **Power BI** pour les visualisations et dashboards interactifs.
-- **Python (optionnel)** pour certaines vérifications préliminaires.
-
----
-
-## 📈 Limites et Perspectives
-
-- L’analyse actuelle porte uniquement sur les entreprises milliardaires.  
-  👉 Elle pourrait être étendue à d’autres segments (PME, ETI) en important une base de données similaire et en adaptant les vues.
-- Les valeurs corrigées manuellement pourraient à terme être historisées dans un fichier de log pour conserver une traçabilité.
-- Intégration future d’autres indicateurs financiers (EBITDA, CAF, ratios de structure…)
+**3️⃣ Création des clusters**  
+- Classement des entreprises en **quartiles (NTILE 4)** selon le chiffre d’affaires  
 
 ---
 
-## 📌 Auteur
+## 📌 Travail Réalisé  
 
-DJAHA YANKEP Charly William  
-📧 charlywilo@gmail.com
+| 📂 Fichier                          | 📑 Description                                                               |
+|:----------------------------------|:----------------------------------------------------------------------------|
+| `projet_finance_milliardaires_notebook.sql` | Notebook SQL contenant toutes les étapes de nettoyage, préparation, création de vues et clustering |
+| `rapport_financier_milliardaires.pbix`    | Rapport Power BI interactif avec dashboards et analyses visuelles            |
+| `docs/projet_finance_milliardaires_explications.pdf` | Document explicatif détaillant la méthodologie et les choix techniques        |
+| `data/ratios_inpi_bce.csv`                | Fichier de données initial utilisé pour les analyses                         |
+
+---
+
+## 📌 Résultats
+
+Le rapport Power BI met en évidence :  
+✔️ L’évolution du chiffre d’affaires et du résultat net des entreprises milliardaires de 2012 à 2023  
+✔️ Les variations annuelles en pourcentage  
+✔️ Le classement des entreprises par quartile selon leur chiffre d’affaires  
+✔️ Les marges nettes et leur évolution  
+
+---
+
+## 📌 Outils utilisés  
+
+- **PostgreSQL** : Nettoyage, transformations, création de vues matérialisées et clustering  
+- **Power BI** : Visualisation et création de dashboards interactifs  
+- **Python** *(optionnel pour certains tests statistiques)*
+
+---
+
+## 📌 Conclusion  
+
+Ce projet démontre la capacité à :  
+✅ Collecter et structurer des données financières réelles  
+✅ Nettoyer et préparer des bases de données volumineuses via SQL  
+✅ Appliquer des règles métiers pertinentes  
+✅ Réaliser des visualisations financières impactantes sous Power BI  
+✅ Structurer un projet analytique complet et documenté  
+
+---
+
+💼 **Ce projet est intégralement réplicable et adaptable à d’autres jeux de données d’entreprises, en conservant la même structure et règles d’analyse.**  
+
+---
+
+## 📥 Contact  
+
+**DJAHA YANKEP Charly William**  
+📧 Email : charlywilo@gmail.com  
+📞 Téléphone : 0758640867  
+📍 Adresse : 231 Avenue Stalingrad, 37700 Saint Pierre des Corps  
+🌐 GitHub : [https://github.com/Djaha-Charly](https://github.com/Djaha-Charly)  
+
+---
+
+## 📌 Licence  
+
+Projet sous licence **MIT** — libre d'utilisation et de diffusion à des fins non commerciales.
+
+---
+
+## ✅ Remarque  
+
+Ce projet est un exercice personnel de data analysis réalisé dans le cadre d’une reconversion professionnelle vers le métier de Data Analyst.
+
