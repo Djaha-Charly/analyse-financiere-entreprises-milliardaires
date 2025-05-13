@@ -79,4 +79,4 @@ Les visualisations ont été réalisées sur Power BI en exploitant exclusivemen
 ## 📌 Auteur
 
 DJAHA YANKEP Charly William  
-[📧 charlywilo@gmail.com]
+📧 charlywilo@gmail.com
