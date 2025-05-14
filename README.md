@@ -15,9 +15,14 @@ L’ensemble du projet est réalisé à partir de données publiques issues de l
 
 ## 📌 Source de données
 
-- **Nom du fichier** : `ratios_inpi_bce.csv`
-- **Provenance** : [https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce](https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce)
-- **Période couverte** : 2012-2023
+**Nom** : `ratios_inpi_bce.csv`  
+**Taille** : +700 Mo  
+**Source** : [data.economie.gouv.fr - Ratios Financiers des Entreprises](https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce)  
+**Version utilisée** : 28/04/2025
+
+⚠️ **Attention :**  
+GitHub ne permettant pas l’upload de fichiers supérieurs à 25 Mo, le fichier CSV n'est pas inclus dans ce dépôt.  
+➡️ Pour récupérer la dernière version à jour de cette base, utilisez le script SQL disponible dans ce projet pour automatiser le téléchargement depuis la source officielle.
 
 ---
 
@@ -29,13 +34,15 @@ L’ensemble du projet est réalisé à partir de données publiques issues de l
 - Analyse des distributions du **chiffre d’affaires** et du **résultat net**  
 - Identification et traitement :
   - Chiffres d’affaires négatifs
-  - Résultats nets supérieurs à +3000% ou inférieurs à –100% du chiffre d’affaires  
+  - Résultats nets supérieurs à +3000% ou inférieurs à –100% du chiffre d’affaires
 
-**2️⃣ Règles métiers appliquées**  
+**2️⃣ Règles métiers appliquées** et **Élimination des doublons**  
 - Conservation uniquement des entreprises dont le **chiffre d’affaires ≥ 1 milliard d’euros**  
 - Résultat net borné entre **–100% et +200% du chiffre d’affaires**  
 - Calcul d’un indicateur financier complémentaire : **Marge nette (%)** = (Résultat Net / Chiffre d’affaires) × 100  
 - Substitution manuelle de certaines valeurs aberrantes détectées via le site officiel [infogreffe.fr](https://www.infogreffe.fr/entreprise/) pour garantir la fiabilité des indicateurs
+- Élimination des doublons par entreprise et par année en priorisant le type de bilan :
+- Priorité : `K` > `C` > `S` > autres: si plusieurs bilans pour une entreprise sur une même année, le bilan `K` est généralement le plus représentatif.
 
 **3️⃣ Création des clusters**  
 - Classement des entreprises en **quartiles (NTILE 4)** selon le chiffre d’affaires  
@@ -48,8 +55,20 @@ L’ensemble du projet est réalisé à partir de données publiques issues de l
 |:----------------------------------|:----------------------------------------------------------------------------|
 | `projet_finance_milliardaires_notebook.sql` | Notebook SQL contenant toutes les étapes de nettoyage, préparation, création de vues et clustering |
 | `rapport_financier_milliardaires.pbix`    | Rapport Power BI interactif avec dashboards et analyses visuelles            |
-| `docs/projet_finance_milliardaires_explications.pdf` | Document explicatif détaillant la méthodologie et les choix techniques        |
-| `data/ratios_inpi_bce.csv`                | Fichier de données initial utilisé pour les analyses                         |
+| `projet_finance_milliardaires_explications.rd` | Document explicatif détaillant la méthodologie et les choix techniques        |
+| `readme.md`                | Ce document                        |
+- **(Pas de fichier CSV en raison de la taille)**
+  
+## 📥 Téléchargement de la donnée
+
+Utilisez ce script pour télécharger la dernière version de la base INPI-BCE depuis le site officiel :
+
+```sql
+-- Télécharger la base depuis le site data.economie.gouv.fr
+-- (commande wget ou curl à adapter en fonction du format)
+
+-- Exemple (terminal) :
+wget -O ratios_inpi_bce.csv "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/ratios_inpi_bce/exports/csv?limit=-1"
 
 ---
 
