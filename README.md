@@ -54,7 +54,7 @@ GitHub ne permettant pas l’upload de fichiers supérieurs à 25 Mo, le fichier
 | 📂 Fichier                          | 📑 Description                                                               |
 |:----------------------------------|:----------------------------------------------------------------------------|
 | `projet_finance_milliardaires_notebook.sql` | Notebook SQL contenant toutes les étapes de nettoyage, préparation, création de vues et clustering |
-| `rapport_financier_milliardaires.pbix`    | Rapport Power BI interactif avec dashboards et analyses visuelles            |
+| `Analyse_Entreprises_Milliardaires.pbix`    | Rapport Power BI interactif avec dashboards et analyses visuelles            |
 | `projet_finance_milliardaires_explications.rd` | Document explicatif détaillant la méthodologie et les choix techniques        |
 | `readme.md`                | Ce document                        |
 - **(Pas de fichier CSV en raison de la taille)**
