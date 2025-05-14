@@ -109,8 +109,6 @@ Ce projet démontre la capacité à :
 
 **DJAHA YANKEP Charly William**  
 📧 Email : charlywilo@gmail.com  
-📞 Téléphone : 0758640867  
-📍 Adresse : 231 Avenue Stalingrad, 37700 Saint Pierre des Corps  
 🌐 GitHub : [https://github.com/Djaha-Charly](https://github.com/Djaha-Charly)  
 
 ---
