@@ -40,7 +40,7 @@ GitHub ne permettant pas l’upload de fichiers supérieurs à 25 Mo, le fichier
 - Conservation uniquement des entreprises dont le **chiffre d’affaires ≥ 1 milliard d’euros**  
 - Résultat net borné entre **–100% et +200% du chiffre d’affaires**  
 - Calcul d’un indicateur financier complémentaire : **Marge nette (%)** = (Résultat Net / Chiffre d’affaires) × 100  
-- Substitution manuelle de certaines valeurs aberrantes détectées via le site officiel [infogreffe.fr](https://www.infogreffe.fr/entreprise/) pour garantir la fiabilité des indicateurs
+- Substitution manuelle de certaines valeurs aberrantes détectées via le site officiel [infogreffe.fr](https://www.infogreffe.fr/entreprise/) pour garantir la fiabilité des indicateurs. Le fichier ratios.corriges.csv contient quelques valeurs d'entreprises(3) qui présentaient des valeurs aberrantes visibles.
 - Élimination des doublons par entreprise et par année en priorisant le type de bilan :
 - Priorité : `K` > `C` > `S` > autres: si plusieurs bilans pour une entreprise sur une même année, le bilan `K` est généralement le plus représentatif.
 
