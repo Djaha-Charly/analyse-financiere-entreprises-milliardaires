@@ -8,9 +8,9 @@
 
 ✅ <b>Visuels</b> :
 - 1️⃣ Nombre total d’entreprises milliardaires
-- 2️⃣ Répartition des entreprises par type de bilan (camembert ou barres)
+- 2️⃣ Répartition des entreprises par type de bilan (camembert)
 - 3️⃣ Répartition des entreprises milliardaires par année (histogramme)
-- 4️⃣ Répartition des entreprises par cluster de chiffre d’affaires (donut ou bar chart)
+- 4️⃣ Répartition des entreprises par cluster de chiffre d’affaires (donut)
 - 5️⃣ Top 10 entreprises en chiffre d’affaires
 - 6️⃣ Top 10 entreprises en résultat net
 
