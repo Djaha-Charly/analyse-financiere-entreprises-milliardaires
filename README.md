@@ -121,5 +121,5 @@ Projet sous licence **MIT** — libre d'utilisation et de diffusion à des fins 
 
 ## ✅ Remarque  
 
-Ce projet est un exercice personnel de data analysis réalisé dans le cadre d’une reconversion professionnelle vers le métier de Data Analyst.
+Projet personnel de data analysis réalisé dans une démarche de constitution de portfolio professionnel.
 
