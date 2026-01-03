@@ -1,5 +1,13 @@
 # 📊 Analyse Financière des Entreprises Françaises Milliardaires (2012-2023)
 
+## 🔍 Synthèse rapide
+Analyse financière des entreprises françaises dépassant 1 milliard € de chiffre d’affaires (2012–2023),
+basée sur des données INPI–BCE, avec nettoyage avancé en SQL et visualisation sous Power BI.
+
+🎯 Objectif : analyser la performance financière, la rentabilité et l’évolution des grandes entreprises,
+en appliquant des règles métiers réalistes et des méthodes de clustering.
+
+
 ## 📌 Contexte et Objectif
 
 Ce projet a pour objectif d’étudier la santé financière des entreprises françaises réalisant plus de **1 milliard d’euros de chiffre d’affaires** entre **2012 et 2023**.  
